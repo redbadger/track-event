@@ -25,7 +25,6 @@
   track('a.tracked').all('click', 'arguments', 'for', 'callback', 'and more').using(callback);
   track('input')
     .first('change', 'Forms', 'Fill_In')
-    .first('click', 'Forms', 'Fill_In')
     .using(callback);
   ```
 
