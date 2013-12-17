@@ -1,5 +1,5 @@
 
-# event-tracker
+# track-event
 
   Track DOM events using your favourite analytics service.
 
@@ -9,14 +9,14 @@
 
   Install with [component(1)](http://component.io):
 
-    $ component install redbadger/event-tracker
+    $ component install redbadger/track-event
 
 ## API
 
   Tracker is assigned to a set of elements and events like so
 
   ```js
-  track = require('event-tracker')
+  track = require('track-event')
 
   var callback = function(element, first, second, third) {
     _gaq.push(['_trackEvent', first, second, third]);
