@@ -27,15 +27,17 @@
       console.log("Tracked message ", message, "on", el);
     };
 
-    track("input").first('keyup', 'Input first keyup!').using(callback);
-    track("textarea").first('keyup', 'Input first keyup!').using(callback);
+    track("input")
+      .first('keyup', 'Input first keyup!')
+      .all('keyup', 'Input keyup!')
+      .first('change', 'Input changed!')
+      .using(callback);
 
-    track("input").all('keyup', 'Input keyup!').using(callback);
-    track("textarea").all('keyup', 'Input keyup!').using(callback);
-
-    track("input").first('change', 'Input changed!').using(callback);
-    track("textarea").first('change', 'Input changed!').using(callback);
-
+    track("textarea")
+      .first('keyup', 'Input first keyup!')
+      .all('keyup', 'Input keyup!')
+      .first('change', 'Input changed!')
+      .using(callback);
 
     track("a.tracked.all").all('click', 'Link clicked!').using(callback);
     track("a.tracked.first").first('click', 'Link clicked!').using(callback);

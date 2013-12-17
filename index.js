@@ -5,11 +5,8 @@ var each = require('each');
 module.exports = track;
 
 function Tracker(elements) {
+  this.config = []
   this.targets = elements;
-  this.type = null
-  this.event = null;
-  this.args = [];
-  this.live = false;
 }
 
 Tracker.prototype.first = function() {
@@ -27,13 +24,15 @@ Tracker.prototype.all = function() {
 };
 
 Tracker.prototype.using = function(cb) {
-  this.callback = cb;
-  this.live = true;
-
   var self = this;
-  each(this.targets, function(target) {
-    events.bind(target, self.event, function(e) {
-      self.handle.call(self, e, target, callback);
+  each(this.config, function(cfg) {
+    each(self.targets, function(target) {
+      var handler = function(e) {
+        self.handle.call(self, handler, cfg, target, cb);
+      };
+
+      console.log("Binding", handler, "to", cfg.event, "on", target);
+      events.bind(target, cfg.event, handler);
     });
   });
 };
@@ -41,26 +40,23 @@ Tracker.prototype.using = function(cb) {
 // private api
 
 Tracker.prototype.setup = function() {
-  var args = Array.prototype.slice.call(arguments, 0)
+  var args = Array.prototype.slice.call(arguments, 0);
+  var config = {type: args[0], event: args[1], args: args.slice(2)};
 
-  this.type = args[0];
-  this.event = args[1];
-  this.args = args.slice(2);
+  console.log("adding config", config);
+  this.config.push(config);
 
   return this;
 };
 
-Tracker.prototype.handle = function(e, target, callback) {
-  if(!this.live)
-    return;
-
-  var args = this.args.slice(0);
+Tracker.prototype.handle = function(handler, config, target, callback) {
+  var args = config.args.slice(0);
   args.splice(0, 0, target);
 
   callback.apply(target, args);
 
-  if(this.type == 'first')
-    this.live = false;
+  if(config.type == 'first')
+    events.unbind(target, config.event, handler);
 };
 
 function track(selector) {
