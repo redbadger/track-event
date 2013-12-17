@@ -7,8 +7,6 @@
 
 ## Installation
 
-  NOTE: This is a work in progress, there is no code yet.
-
   Install with [component(1)](http://component.io):
 
     $ component install redbadger/event-tracker
