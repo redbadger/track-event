@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event Tracking Test</title>
+<body>
+  <div>
+    <form>
+      <p>
+        <input type="text" id="input" class="tracked" placeholder="input 1"/>
+      </p>
+      <p>
+        <textarea id="textarea" class="tracked"></textarea>
+      </p>
+    </form>
+    <ul>
+      <li><a href="#" class="tracked all">link 1</a></li>
+      <li><a href="#" class="tracked first">link 2</a></li>
+      <li><a href="#" class="tracked all">link 3</a></li>
+    </ul>
+  </div>
+  <script src="../build/build.js"></script>
+  <script>
+    track = require('event-tracker');
+    qwery = require('qwery');
+
+    callback = function(el, message) {
+      console.log("Tracked message ", message, "on", el);
+    };
+
+    track("input").first('keyup', 'Input first keyup!').using(callback);
+    track("textarea").first('keyup', 'Input first keyup!').using(callback);
+
+    track("input").all('keyup', 'Input keyup!').using(callback);
+    track("textarea").all('keyup', 'Input keyup!').using(callback);
+
+    track("input").first('change', 'Input changed!').using(callback);
+    track("textarea").first('change', 'Input changed!').using(callback);
+
+
+    track("a.tracked.all").all('click', 'Link clicked!').using(callback);
+    track("a.tracked.first").first('click', 'Link clicked!').using(callback);
+  </script>
+</body>
+</html>

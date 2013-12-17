@@ -4,7 +4,11 @@
   "description": "Track DOM events using your favourite analytics service",
   "version": "0.0.1",
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "component/event": "*",
+    "component/each": "*",
+    "ded/qwery": "*"
+  },
   "development": {},
   "license": "MIT",
   "main": "index.js",
