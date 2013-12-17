@@ -1,6 +1,6 @@
 {
-  "name": "event-tracker",
-  "repo": "redbadger/event-tracker",
+  "name": "track-event",
+  "repo": "redbadger/track-event",
   "description": "Track DOM events using your favourite analytics service",
   "version": "0.0.1",
   "keywords": [],
