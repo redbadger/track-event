@@ -31,7 +31,6 @@ Tracker.prototype.using = function(cb) {
         self.handle.call(self, handler, cfg, target, cb);
       };
 
-      console.log("Binding", handler, "to", cfg.event, "on", target);
       events.bind(target, cfg.event, handler);
     });
   });
@@ -43,7 +42,6 @@ Tracker.prototype.setup = function() {
   var args = Array.prototype.slice.call(arguments, 0);
   var config = {type: args[0], event: args[1], args: args.slice(2)};
 
-  console.log("adding config", config);
   this.config.push(config);
 
   return this;
